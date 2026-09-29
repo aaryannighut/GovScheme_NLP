@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Find Schemes - TF-IDF Search Engine - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary mb-1">Search Government Schemes</h2>
+        <p class="text-muted">Information Retrieval powered by TF-IDF Vectorization & Cosine Similarity</p>
+    </div>
+
+    <!-- Search Bar & Filters -->
+    <div class="card gov-card p-4 mb-4">
+        <form action="{{ url_for('find_schemes') }}" method="GET" class="row g-3">
+            <div class="col-md-6">
+                <label for="query" class="form-label fw-bold small text-muted">Enter Query or Keywords:</label>
+                <input 
+                    type="text" 
+                    class="form-control form-control-lg" 
+                    id="query" 
+                    name="query" 
+                    value="{{ query }}" 
+                    placeholder="e.g. scholarship for poor students, financial help for farmers, business loan..."
+                >
+            </div>
+            <div class="col-md-3">
+                <label for="category" class="form-label fw-bold small text-muted">Category Filter:</label>
+                <select class="form-select form-select-lg" id="category" name="category">
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="state" class="form-label fw-bold small text-muted">State Filter:</label>
+                <select class="form-select form-select-lg" id="state" name="state">
+                    {% for st in states %}
+                    <option value="{{ st }}" {% if selected_state == st %}selected{% endif %}>{{ st }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary px-4 fw-bold">
+                    🔎 Search Schemes
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search Results Count -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold text-dark mb-0">Search Results ({{ schemes | length }})</h5>
+        {% if query %}
+        <span class="badge bg-light text-dark border">Query: "{{ query }}"</span>
+        {% endif %}
+    </div>
+
+    <!-- Scheme Results Grid -->
+    {% if schemes %}
+    <div class="row g-4">
+        {% for s in schemes %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card h-100 p-4 d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="badge bg-primary">{{ s.category }}</span>
+                    {% if s.search_relevance_score is defined and query %}
+                    <span class="badge bg-info text-dark">
+                        TF-IDF Score: {{ s.search_relevance_score }}%
+                    </span>
+                    {% endif %}
+                </div>
+                <h5 class="fw-bold text-dark mb-2">{{ s.name }}</h5>
+                <p class="text-muted small mb-3 flex-grow-1">{{ s.description[:120] }}...</p>
+                <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                    <span class="small text-muted">{{ s.scope }} Scope</span>
+                    <a href="{{ url_for('scheme_details', scheme_id=s.id) }}" class="btn btn-outline-primary btn-sm">
+                        View Details →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card gov-card p-5 text-center">
+        <h5 class="text-muted">No schemes found matching your search filters.</h5>
+        <p class="small text-muted mb-0">Try searching for broader terms like "scholarship", "loan", "farmer", or "house".</p>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

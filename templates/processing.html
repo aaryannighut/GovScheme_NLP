@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Analyzing Profile - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 text-center">
+
+            <div class="card gov-card p-5 my-4">
+                
+                <div class="spinner-border text-primary mb-4" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Processing...</span>
+                </div>
+
+                <h3 class="fw-bold text-dark mb-2">Analyzing Your Natural Language Input</h3>
+                <p class="text-muted small mb-4">Please wait while our NLP pipeline extracts entities and matches scheme criteria...</p>
+
+                <!-- Animated Checklist -->
+                <div class="text-start bg-light p-4 rounded-3 border mx-auto mb-4" style="max-width: 450px;">
+                    <ul class="list-unstyled mb-0">
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Text Preprocessing & Cleaning</span>
+                        </li>
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Sentence & Word Tokenization</span>
+                        </li>
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Stop-word Removal & Lemmatization</span>
+                        </li>
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Attribute & Entity Extraction (Age, Income, State, etc.)</span>
+                        </li>
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Semantic Normalization</span>
+                        </li>
+                        <li class="process-step-item mb-2 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">TF-IDF Vectorization & Scheme Retrieval</span>
+                        </li>
+                        <li class="process-step-item mb-0 d-flex align-items-center">
+                            <span class="step-icon text-secondary me-2">⏳</span>
+                            <span class="step-text text-muted">Rule-Based Eligibility Evaluation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hidden submission form to results -->
+                <form id="hiddenSubmitForm" action="{{ url_for('results') }}" method="POST">
+                    <input type="hidden" name="user_text" value="{{ user_text }}">
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ scheme.name }} - Scheme Details - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="mb-3">
+        <a href="{{ url_for('results') }}" class="btn btn-outline-secondary btn-sm">← Back to Results</a>
+    </div>
+
+    <!-- Official Verification Banner -->
+    <div class="academic-disclaimer mb-4">
+        <strong>Academic Disclaimer:</strong> Scheme information is provided for academic demonstration. Always verify current guidelines and application details through the official government portal.
+    </div>
+
+    <div class="card gov-card p-4 p-md-5 mb-4">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-start mb-3 gap-2">
+            <div>
+                <span class="badge bg-primary mb-2">{{ scheme.category }}</span>
+                <span class="badge bg-secondary mb-2">{{ scheme.scope }} Scheme</span>
+                <h2 class="fw-bold text-dark mb-2">{{ scheme.name }}</h2>
+                <p class="text-muted mb-0">{{ scheme.source_name }}</p>
+            </div>
+            <div>
+                <a href="{{ scheme.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-success btn-lg fw-bold shadow-sm">
+                    Visit Official Portal ↗
+                </a>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Scheme Description -->
+        <h5 class="fw-bold text-primary mb-2">Description</h5>
+        <p class="lead text-dark fs-6 mb-4">{{ scheme.description }}</p>
+
+        <!-- Eligibility Matching Analysis for Current User Profile -->
+        <div class="card bg-light border p-4 rounded-3 mb-4">
+            <h5 class="fw-bold text-dark mb-3">Matching Analysis for Your Extracted Profile</h5>
+            <div class="mb-3">
+                <span class="badge match-score-badge {% if evaluation.profile_match_score >= 70 %}match-high{% elif evaluation.profile_match_score >= 40 %}match-medium{% else %}match-low{% endif %}">
+                    Profile Match Score: {{ evaluation.profile_match_score }}%
+                </span>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm bg-white mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Criterion</th>
+                            <th>Status</th>
+                            <th>Matching Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for crit_name, crit in evaluation.criteria_breakdown.items() %}
+                        <tr>
+                            <td class="fw-bold text-capitalize">{{ crit_name }}</td>
+                            <td>
+                                {% if crit.status == 'MATCHED' %}
+                                    <span class="badge bg-success">MATCHED</span>
+                                {% elif crit.status == 'NOT_MATCHED' %}
+                                    <span class="badge bg-danger">NOT MATCHED</span>
+                                {% elif crit.status == 'NOT_PROVIDED' %}
+                                    <span class="badge bg-warning text-dark">NOT PROVIDED</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">NOT APPLICABLE</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ crit.details }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Key Details Grid -->
+        <div class="row g-4 mb-4">
+            <!-- Benefits -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 border rounded-3 bg-white">
+                    <h5 class="fw-bold text-success mb-3">🎁 Scheme Benefits</h5>
+                    <ul class="mb-0 ps-3">
+                        {% for benefit in scheme.benefits %}
+                        <li class="mb-2">{{ benefit }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Required Documents -->
+            <div class="col-md-6">
+                <div class="card h-100 p-4 border rounded-3 bg-white">
+                    <h5 class="fw-bold text-primary mb-3">📄 Required Documents</h5>
+                    <ul class="mb-0 ps-3">
+                        {% for doc in scheme.documents %}
+                        <li class="mb-2">{{ doc }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metadata & Verification -->
+        <div class="p-3 bg-light rounded-3 border d-flex flex-wrap justify-content-between align-items-center small text-muted">
+            <div>
+                <strong>Scheme ID:</strong> {{ scheme.id }} | 
+                <strong>Target Groups:</strong> {{ scheme.target_groups | join(', ') }}
+            </div>
+            <div>
+                <strong>Last Verified:</strong> {{ scheme.last_verified }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

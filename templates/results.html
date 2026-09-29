@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block title %}Matching Government Schemes - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- Header & Action Buttons -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Relevant Government Schemes</h2>
+            <p class="text-muted mb-0">Based on rule-based eligibility evaluation & NLP feature extraction</p>
+        </div>
+        <div class="d-flex gap-2 mt-2 mt-sm-0">
+            <a href="{{ url_for('nlp_analysis') }}" class="btn btn-outline-primary btn-sm fw-semibold">
+                🧠 View NLP Diagnostics
+            </a>
+            <a href="{{ url_for('check_eligibility') }}" class="btn btn-secondary btn-sm">
+                ✏️ Edit Input Text
+            </a>
+        </div>
+    </div>
+
+    <!-- Official Verification Disclaimer Banner -->
+    <div class="academic-disclaimer d-flex align-items-center mb-4">
+        <span class="fs-4 me-3">ℹ️</span>
+        <div>
+            <strong>Verified Criteria Match Result:</strong> Your provided information matches the stored scheme criteria below. 
+            <em>Please verify the current official scheme guidelines from official portals before applying.</em>
+        </div>
+    </div>
+
+    <!-- Spelling Correction Alert (if any typos were corrected) -->
+    {% if spell_correction and spell_correction.corrections %}
+    <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
+        <strong>✨ Auto Spelling Correction Applied:</strong>
+        <ul class="mb-0 mt-1 small">
+            {% for corr in spell_correction.corrections %}
+            <li>Corrected '<strong>{{ corr.original }}</strong>' ➔ '<strong>{{ corr.corrected }}</strong>' (Edit Distance: {{ corr.distance }})</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    <!-- Extracted User Profile Summary Box -->
+    <div class="card gov-card p-4 mb-4 bg-white">
+        <h5 class="fw-bold text-primary mb-3 d-flex align-items-center">
+            <span class="me-2">📋</span> Extracted User Profile
+            <small class="text-muted font-normal ms-auto" style="font-size: 0.8rem;">(Extracted automatically via NLP)</small>
+        </h5>
+        <div class="row g-3">
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">Age</small>
+                    <strong class="fs-6 text-dark">{{ profile.age if profile.age is not none else 'Not Provided' }}</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">State</small>
+                    <strong class="fs-6 text-dark">{{ profile.state or 'Not Provided' }}</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">Annual Income</small>
+                    <strong class="fs-6 text-dark">
+                        {% if profile.income is not none %}₹{{ "{:,}".format(profile.income) }}{% else %}Not Provided{% endif %}
+                    </strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">Occupation</small>
+                    <strong class="fs-6 text-dark text-capitalize">{{ profile.occupation or 'Not Provided' }}</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">Category</small>
+                    <strong class="fs-6 text-dark">{{ profile.category or 'Not Provided' }}</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="p-2 bg-light rounded border text-center">
+                    <small class="text-muted d-block">Requirement / Need</small>
+                    <strong class="fs-6 text-dark">{{ profile.need_category or 'General' }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scheme Results Section -->
+    <h4 class="fw-bold mb-3 text-dark">Matched Schemes (Sorted by Profile Match Score)</h4>
+
+    {% if schemes %}
+    <div class="row g-4 mb-5">
+        {% for s in schemes %}
+        {% set eval = s.eligibility_evaluation %}
+        {% set score = s.profile_match_score %}
+        
+        <div class="col-12">
+            <div class="card gov-card p-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                    <div>
+                        <span class="badge bg-secondary mb-2">{{ s.category }}</span>
+                        <span class="badge bg-outline-secondary border text-dark ms-1">{{ s.scope }} Scope</span>
+                        <h4 class="fw-bold text-primary mb-1">{{ s.name }}</h4>
+                        <p class="text-muted mb-0 small">{{ s.description }}</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge match-score-badge {% if score >= 70 %}match-high{% elif score >= 40 %}match-medium{% else %}match-low{% endif %}">
+                            Profile Match: {{ score }}%
+                        </span>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.75rem;">Rule Match Score</small>
+                    </div>
+                </div>
+
+                <hr class="my-3">
+
+                <!-- Criteria Evaluation Breakdown Grid -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold small text-uppercase text-secondary mb-2">Eligibility Criteria Evaluation:</h6>
+                        <ul class="list-unstyled mb-0 small">
+                            {% for criterion_key, crit in eval.criteria_breakdown.items() %}
+                            <li class="mb-1">
+                                {% if crit.status == 'MATCHED' %}
+                                    <span class="status-matched">✓ MATCHED:</span> {{ crit.details }}
+                                {% elif crit.status == 'NOT_MATCHED' %}
+                                    <span class="status-unmatched">✕ NOT MATCHED:</span> {{ crit.details }}
+                                {% elif crit.status == 'NOT_PROVIDED' %}
+                                    <span class="status-missing">⚠ NOT PROVIDED:</span> {{ crit.details }}
+                                {% else %}
+                                    <span class="text-muted">⚪ N/A:</span> {{ crit.details }}
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h6 class="fw-bold small text-uppercase text-secondary mb-2">Key Scheme Benefits:</h6>
+                        <ul class="mb-2 small ps-3">
+                            {% for benefit in s.benefits[:2] %}
+                            <li>{{ benefit }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="small">
+                            <strong class="text-dark">Official Portal Source:</strong> {{ s.source_name }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center pt-2 border-top gap-2">
+                    <small class="text-muted">Last Verified: {{ s.last_verified }}</small>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('scheme_details', scheme_id=s.id) }}" class="btn btn-primary btn-sm fw-semibold">
+                            View Scheme Details →
+                        </a>
+                        <a href="{{ s.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">
+                            Official Source ↗
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card gov-card p-5 text-center my-4">
+        <h4 class="fw-bold text-secondary">No Schemes Matched</h4>
+        <p class="text-muted">No relevant schemes were found using the provided information. Try adding your age, state, occupation, income or requirement in simple language.</p>
+        <div>
+            <a href="{{ url_for('check_eligibility') }}" class="btn btn-primary">Try Another Profile Description</a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

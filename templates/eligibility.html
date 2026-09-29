@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block title %}Check Your Eligibility - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-primary mb-1">Tell Us About Yourself</h2>
+                <p class="text-muted fs-6">Tell us about yourself using the form below. No technical knowledge is required.</p>
+            </div>
+
+            <!-- Mode Selector Tabs -->
+            <ul class="nav nav-pills justify-content-center mb-4 gap-2" id="inputModeTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-bold px-4 shadow-sm" id="form-tab" data-bs-toggle="tab" data-bs-target="#form-mode" type="button" role="tab">
+                        📋 Structured Profile Form
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold px-4 shadow-sm" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-mode" type="button" role="tab">
+                        🗣️ Natural Language Text Description
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="inputModeTabContent">
+
+                <!-- TAB 1: Structured Form Builder Mode -->
+                <div class="tab-pane fade show active" id="form-mode" role="tabpanel">
+                    <div class="card gov-card p-4 p-md-5 mb-4">
+                        <h4 class="fw-bold text-dark mb-4 border-bottom pb-3">Enter Your Personal Details</h4>
+                        
+                        <form action="{{ url_for('process_profile') }}" method="POST">
+                            
+                            <!-- Row 1: Age & Gender -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="age" class="form-label fw-semibold text-dark">Age</label>
+                                    <input type="number" class="form-control form-control-lg" id="age" name="age" placeholder="e.g. 22" min="5" max="100" value="22">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="gender" class="form-label fw-semibold text-dark">Gender</label>
+                                    <select class="form-select form-select-lg" id="gender" name="gender">
+                                        <option selected>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Transgender">Transgender</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: State & Annual Family Income -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="state" class="form-label fw-semibold text-dark">State</label>
+                                    <select class="form-select form-select-lg" id="state" name="state">
+                                        <option value="Select State">Select State</option>
+                                        <option value="Maharashtra" selected>Maharashtra</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Odisha">Odisha</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="income" class="form-label fw-semibold text-dark">Annual Family Income</label>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-text">₹</span>
+                                        <input type="text" class="form-control" id="income" name="income" placeholder="e.g. 250000 or 2.5 lakh" value="250000">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Social Category & Occupation -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label fw-semibold text-dark">Social Category</label>
+                                    <select class="form-select form-select-lg" id="category" name="category">
+                                        <option value="Select Category">Select Category</option>
+                                        <option value="OBC" selected>OBC</option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
+                                        <option value="General">General</option>
+                                        <option value="EWS">EWS</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="occupation" class="form-label fw-semibold text-dark">Occupation</label>
+                                    <select class="form-select form-select-lg" id="occupation" name="occupation">
+                                        <option value="Select Occupation">Select Occupation</option>
+                                        <option value="Student" selected>Student</option>
+                                        <option value="Farmer">Farmer</option>
+                                        <option value="Entrepreneur">Entrepreneur</option>
+                                        <option value="Employee">Employee</option>
+                                        <option value="Unemployed">Unemployed</option>
+                                        <option value="Artisan">Artisan / Craftsman</option>
+                                        <option value="Street Vendor">Street Vendor</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Student Status & Residence Type -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold text-dark d-block">Are you currently a student?</label>
+                                    <div class="pt-2">
+                                        <div class="form-check form-check-inline me-4">
+                                            <input class="form-check-input" type="radio" name="student_status" id="student_yes" value="Yes" checked>
+                                            <label class="form-check-label fw-medium" for="student_yes">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="student_status" id="student_no" value="No">
+                                            <label class="form-check-label fw-medium" for="student_no">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="residence_type" class="form-label fw-semibold text-dark">Residence Type</label>
+                                    <select class="form-select form-select-lg" id="residence_type" name="residence_type">
+                                        <option value="Select Residence Type">Select Residence Type</option>
+                                        <option value="Urban" selected>Urban</option>
+                                        <option value="Rural">Rural</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 5: Education Level & Requirement -->
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="education_level" class="form-label fw-semibold text-dark">Education Level</label>
+                                    <select class="form-select form-select-lg" id="education_level" name="education_level">
+                                        <option value="Select Education Level">Select Education Level</option>
+                                        <option value="School (10th/12th)">School (10th/12th)</option>
+                                        <option value="Undergraduate" selected>Undergraduate</option>
+                                        <option value="Postgraduate">Postgraduate</option>
+                                        <option value="Diploma / ITI">Diploma / ITI</option>
+                                        <option value="Doctorate">Doctorate</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="need_category" class="form-label fw-semibold text-dark">Requirement</label>
+                                    <select class="form-select form-select-lg" id="need_category" name="need_category">
+                                        <option value="Select Requirement">Select Requirement</option>
+                                        <option value="Education" selected>Education</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="Housing">Housing</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Skill Development">Skill Development</option>
+                                        <option value="Employment">Employment</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Row 6: Additional Information -->
+                            <div class="mb-4">
+                                <label for="additional_info" class="form-label fw-semibold text-dark">Additional Information</label>
+                                <textarea class="form-control" id="additional_info" name="additional_info" rows="3" placeholder="Looking for financial assistance for higher education..."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center pt-2">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow">
+                                    🔍 Analyze My Profile →
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Free-Form Natural Language Text Area Mode -->
+                <div class="tab-pane fade" id="text-mode" role="tabpanel">
+                    <div class="card gov-card p-4 p-md-5 mb-4">
+                        <form id="profileForm" action="{{ url_for('process_profile') }}" method="POST">
+                            
+                            <div class="mb-4">
+                                <label for="user_text" class="form-label fw-bold fs-5 text-dark">
+                                    Enter Your Natural Language Description:
+                                </label>
+                                <textarea 
+                                    class="form-control form-control-lg p-3" 
+                                    id="user_text" 
+                                    name="user_text" 
+                                    rows="6"
+                                    placeholder="I am a 22-year-old student from Maharashtra. My family income is ₹2.5 lakh per year. I belong to OBC category and I am looking for an education scholarship."
+                                ></textarea>
+                                <div class="form-text mt-2 text-muted">
+                                    ℹ️ <em>Privacy Note: Your information is processed in real-time during your session only. No personal data is saved.</em>
+                                </div>
+                            </div>
+
+                            <!-- Demo Examples Quick Selector -->
+                            <div class="mb-4 bg-light p-3 rounded-3 border">
+                                <div class="fw-semibold text-dark mb-2">Or click one of these demo examples to auto-fill:</div>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="button" class="example-btn" data-text="I am a 22 year old student from Maharashtra. My annual family income is ₹2.5 lakh. I belong to OBC category and I am looking for an education scholarship.">
+                                        🎓 Student seeking scholarship
+                                    </button>
+                                    <button type="button" class="example-btn" data-text="I am a farmer from Maharashtra looking for agricultural financial assistance. My family income is 1.8 lakh.">
+                                        🌾 Farmer looking for agricultural assistance
+                                    </button>
+                                    <button type="button" class="example-btn" data-text="My family is looking for housing assistance to build a house in Maharashtra. Our income is 2 lakh.">
+                                        🏠 Person looking for housing assistance
+                                    </button>
+                                    <button type="button" class="example-btn" data-text="I am a young entrepreneur looking for government support and loan to start a small business.">
+                                        💼 Entrepreneur looking for business support
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 fw-bold shadow-sm">
+                                    🔍 Analyze My Profile →
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- NLP Tips Box -->
+            <div class="card bg-blue-50 border-0 p-4 rounded-3 text-secondary" style="background-color: #f0f9ff; border: 1px solid #bae6fd !important;">
+                <h6 class="fw-bold text-primary mb-2">💡 Tips for Best NLP Extraction:</h6>
+                <ul class="mb-0 small ps-3">
+                    <li>Include numeric values for age (e.g., <em>22 years old</em>) and income (e.g., <em>₹2.5 lakh</em> or <em>250000</em>).</li>
+                    <li>Mention your Indian state (e.g., <em>Maharashtra</em>, <em>Delhi</em>, <em>Uttar Pradesh</em>).</li>
+                    <li>Specify your occupation (e.g., <em>student</em>, <em>farmer</em>, <em>entrepreneur</em>).</li>
+                    <li>State your category if applicable (e.g., <em>OBC</em>, <em>SC</em>, <em>ST</em>, <em>General</em>, <em>EWS</em>).</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

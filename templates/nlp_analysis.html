@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}How NLP Understands Your Input - NLP Analysis Diagnostics{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+    <!-- Title & Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <div>
+            <span class="badge bg-purple text-white mb-2" style="background-color: #6b21a8;">Engineering Viva Demo</span>
+            <h2 class="fw-bold text-dark mb-1">How NLP Understands Your Input</h2>
+            <p class="text-muted mb-0">Step-by-step diagnostic breakdown of the NLP Feature Extraction & Normalization Pipeline</p>
+        </div>
+        <a href="{{ url_for('check_eligibility') }}" class="btn btn-outline-primary btn-sm">
+            Try Different Text Input
+        </a>
+    </div>
+
+    <!-- Raw Text Banner -->
+    <div class="card gov-card p-4 mb-4 bg-white">
+        <h6 class="fw-bold text-primary mb-2">🗣️ Raw Natural Language Input Sentence:</h6>
+        <p class="lead mb-0 text-dark fs-6 bg-light p-3 rounded border font-monospace">"{{ nlp.user_text }}"</p>
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <!-- 1. Text Preprocessing Output -->
+        <div class="col-md-6">
+            <div class="card gov-card h-100 p-4">
+                <h5 class="fw-bold text-dark mb-3">1. Text Cleaning & Tokenization</h5>
+                
+                <h6 class="fw-bold small text-muted">Sentences Segmented ({{ nlp.preprocessing.sentences | length }}):</h6>
+                <div class="nlp-box mb-3">
+                    {% for sent in nlp.preprocessing.sentences %}
+                    <div>• {{ sent }}</div>
+                    {% endfor %}
+                </div>
+
+                <h6 class="fw-bold small text-muted">Raw Word Tokens ({{ nlp.preprocessing.tokens | length }}):</h6>
+                <div class="mb-3">
+                    {% for t in nlp.preprocessing.tokens %}
+                    <span class="token-pill">{{ t }}</span>
+                    {% endfor %}
+                </div>
+
+                <h6 class="fw-bold small text-muted">Stop-words Filtered Tokens ({{ nlp.preprocessing.filtered_tokens | length }}):</h6>
+                <div>
+                    {% for t in nlp.preprocessing.filtered_tokens %}
+                    <span class="token-pill bg-primary text-white">{{ t }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Lemmatization vs Stemming -->
+        <div class="col-md-6">
+            <div class="card gov-card h-100 p-4">
+                <h5 class="fw-bold text-dark mb-3">2. Morphological Analysis</h5>
+                
+                <h6 class="fw-bold small text-muted">Lemmatized Words (WordNet Lemmatizer):</h6>
+                <div class="mb-3">
+                    {% for w in nlp.preprocessing.lemmatized_words %}
+                    <span class="badge bg-success me-1 mb-1 fs-6 fw-normal">{{ w }}</span>
+                    {% endfor %}
+                </div>
+
+                <h6 class="fw-bold small text-muted">Stemmed Words (Porter Stemmer):</h6>
+                <div class="mb-3">
+                    {% for w in nlp.preprocessing.stemmed_words %}
+                    <span class="badge bg-secondary me-1 mb-1 fs-6 fw-normal">{{ w }}</span>
+                    {% endfor %}
+                </div>
+
+                <!-- WordNet Synonyms Block -->
+                <h6 class="fw-bold small text-muted">WordNet Semantic Lookup for '{{ wordnet.word }}':</h6>
+                <div class="p-3 bg-light rounded border small">
+                    <div><strong>Definition:</strong> {{ wordnet.definition }}</div>
+                    <div class="mt-1">
+                        <strong>Synonyms:</strong>
+                        {% if wordnet.synonyms %}
+                            {% for syn in wordnet.synonyms %}
+                            <span class="badge bg-outline-primary border text-dark ms-1">{{ syn }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="text-muted">No WordNet synonyms found.</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <!-- 3. POS Tagging -->
+        <div class="col-md-6">
+            <div class="card gov-card h-100 p-4">
+                <h5 class="fw-bold text-dark mb-3">3. Part-of-Speech (POS) Tagging</h5>
+                <p class="small text-muted mb-2">NLTK POS Tagging identifying grammatical structures:</p>
+                <div class="table-responsive" style="max-height: 280px; overflow-y: auto;">
+                    <table class="table table-sm table-striped small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Word Token</th>
+                                <th>POS Tag</th>
+                                <th>Grammatical Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in pos_tags %}
+                            <tr>
+                                <td class="fw-bold">{{ item.word }}</td>
+                                <td><code>{{ item.tag }}</code></td>
+                                <td>{{ item.category }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. N-Gram Frequency Analysis -->
+        <div class="col-md-6">
+            <div class="card gov-card h-100 p-4">
+                <h5 class="fw-bold text-dark mb-3">4. N-Gram Phrase Analysis</h5>
+                
+                <h6 class="fw-bold small text-muted">Bigrams (2-word phrases):</h6>
+                <div class="mb-3">
+                    {% for bg in ngrams.bigrams %}
+                    <span class="badge bg-info text-dark me-1 mb-1 fs-6 fw-normal">{{ bg.phrase }} ({{ bg.count }})</span>
+                    {% endfor %}
+                </div>
+
+                <h6 class="fw-bold small text-muted">Trigrams (3-word phrases):</h6>
+                <div>
+                    {% for tg in ngrams.trigrams %}
+                    <span class="badge bg-warning text-dark me-1 mb-1 fs-6 fw-normal">{{ tg.phrase }} ({{ tg.count }})</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 5. Normalized Profile Output JSON -->
+    <div class="card gov-card p-4 mb-4">
+        <h5 class="fw-bold text-dark mb-3">5. Extracted Attribute Profile (Normalized JSON Object)</h5>
+        <pre class="nlp-box mb-0"><code>{{ nlp.user_profile | tojson(indent=4) }}</code></pre>
+    </div>
+
+</div>
+{% endblock %}

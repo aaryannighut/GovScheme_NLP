@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}About - GovScheme NLP Project{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <div class="card gov-card p-4 p-md-5">
+                <div class="border-bottom pb-3 mb-4">
+                    <span class="badge bg-primary px-3 py-2 rounded-pill mb-2">Engineering Academic Mini Project</span>
+                    <h2 class="fw-bold text-dark mb-1">Smart Government Scheme Eligibility Checker Using Natural Language Processing</h2>
+                    <p class="text-muted mb-0">Short Name: <strong>GovScheme NLP</strong></p>
+                </div>
+
+                <h5 class="fw-bold text-primary mb-2">Project Purpose</h5>
+                <p class="text-secondary">
+                    GovScheme NLP is an easy-to-understand, web-based Natural Language Processing application designed for engineering students. It allows citizens to describe their demographic details, financial background, and specific assistance requirements in normal natural language. The system extracts structured attributes and evaluates them against curated Indian government scheme criteria.
+                </p>
+
+                <h5 class="fw-bold text-primary mb-2 mt-4">NLP Concepts Demonstrated</h5>
+                <ul class="text-secondary small mb-4">
+                    <li><strong>Tokenization & Segmentation:</strong> Sentence splitting and word tokenization using NLTK.</li>
+                    <li><strong>Morphological Analysis:</strong> Stop-word removal, Porter Stemming, and WordNet Lemmatization.</li>
+                    <li><strong>Part-of-Speech Tagging:</strong> Grammatical tagging (Nouns, Verbs, Adjectives).</li>
+                    <li><strong>Spelling Correction:</strong> Minimum Edit Distance (Levenshtein) against domain vocabulary.</li>
+                    <li><strong>N-Gram Analysis:</strong> Unigrams, Bigrams, and Trigrams phrase extraction.</li>
+                    <li><strong>Semantic Normalization:</strong> Synonym mapping for canonical occupations, social categories, and need types.</li>
+                    <li><strong>Information Retrieval:</strong> TF-IDF Vectorization and Cosine Similarity matching via scikit-learn.</li>
+                    <li><strong>Rule-Based Eligibility Evaluation:</strong> Explainable criteria comparison engine.</li>
+                </ul>
+
+                <h5 class="fw-bold text-primary mb-2">Technology Stack</h5>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded border">
+                            <strong class="d-block text-dark mb-1">Backend Stack:</strong>
+                            <span class="badge bg-dark">Python 3.13</span>
+                            <span class="badge bg-primary">Flask</span>
+                            <span class="badge bg-success">NLTK</span>
+                            <span class="badge bg-info text-dark">scikit-learn</span>
+                            <span class="badge bg-secondary">spaCy</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded border">
+                            <strong class="d-block text-dark mb-1">Frontend Stack:</strong>
+                            <span class="badge bg-danger">HTML5</span>
+                            <span class="badge bg-primary">CSS3</span>
+                            <span class="badge bg-secondary">Bootstrap 5</span>
+                            <span class="badge bg-warning text-dark">Vanilla JS</span>
+                            <span class="badge bg-info text-dark">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="academic-disclaimer mt-2">
+                    <strong>Academic Disclaimer:</strong> This project uses a limited, curated dataset for academic demonstration. Government scheme eligibility, benefits, documents, and application procedures change frequently. Always verify current information through official government portals.
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

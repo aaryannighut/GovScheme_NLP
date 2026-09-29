@@ -1,0 +1,475 @@
+[
+  {
+    "id": "SCH001",
+    "name": "Post-Matric Scholarship for OBC Students",
+    "category": "Education",
+    "description": "Financial assistance to OBC students studying at post-matriculation or post-secondary stage to enable them to complete their education.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 15,
+    "maximum_age": 30,
+    "maximum_income": 250000,
+    "eligible_categories": ["OBC"],
+    "eligible_occupations": ["student"],
+    "student_status": true,
+    "target_groups": ["OBC Students", "Higher Education"],
+    "benefits": [
+      "Maintenance allowance for hostellers and day scholars",
+      "Reimbursement of non-refundable compulsory fees",
+      "Study tour allowance and thesis typing/printing charges"
+    ],
+    "documents": [
+      "Caste Certificate (OBC)",
+      "Income Certificate from competent authority",
+      "Academic Mark Sheet of last qualifying examination",
+      "Aadhaar Card",
+      "Bank Account details linked with Aadhaar"
+    ],
+    "keywords": ["education", "scholarship", "obc", "student", "college", "tuition", "financial help"],
+    "official_url": "https://scholarships.gov.in",
+    "source_name": "National Scholarship Portal, Ministry of Social Justice and Empowerment",
+    "last_verified": "2026-01-15"
+  },
+  {
+    "id": "SCH002",
+    "name": "Post-Matric Scholarship for SC Students",
+    "category": "Education",
+    "description": "Centrally sponsored scheme offering financial aid to Scheduled Caste students pursuing post-secondary courses in recognized institutions.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 15,
+    "maximum_age": 30,
+    "maximum_income": 250000,
+    "eligible_categories": ["SC"],
+    "eligible_occupations": ["student"],
+    "student_status": true,
+    "target_groups": ["SC Students", "Higher Education"],
+    "benefits": [
+      "100% compulsory non-refundable fees reimbursement",
+      "Monthly maintenance allowance",
+      "Additional disability allowance where applicable"
+    ],
+    "documents": [
+      "SC Caste Certificate",
+      "Income Certificate",
+      "Marksheet of previous class",
+      "Aadhaar Card",
+      "Bank Passbook copy"
+    ],
+    "keywords": ["education", "scholarship", "sc", "scheduled caste", "student", "college", "fees"],
+    "official_url": "https://scholarships.gov.in",
+    "source_name": "National Scholarship Portal, Ministry of Social Justice and Empowerment",
+    "last_verified": "2026-01-15"
+  },
+  {
+    "id": "SCH003",
+    "name": "PRADHAN MANTRI KISAN SAMMAN NIDHI (PM-KISAN)",
+    "category": "Agriculture",
+    "description": "Central sector scheme providing income support to all landholding farmer families across India to supplement their financial needs.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": null,
+    "maximum_income": 200000,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["farmer", "agriculturist"],
+    "student_status": null,
+    "target_groups": ["Farmers", "Small and Marginal Farmers"],
+    "benefits": [
+      "Financial benefit of ₹6,000 per year transferred in 3 equal installments of ₹2,000",
+      "Direct benefit transfer directly into verified bank accounts"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Landholding ownership papers / Khasra Khatuni",
+      "Active Bank Account linked with Aadhaar"
+    ],
+    "keywords": ["farmer", "agriculture", "farming", "crop", "financial aid", "kisan", "cultivator"],
+    "official_url": "https://pmkisan.gov.in",
+    "source_name": "Ministry of Agriculture and Farmers Welfare",
+    "last_verified": "2026-02-10"
+  },
+  {
+    "id": "SCH004",
+    "name": "Pradhan Mantri Awas Yojana - Urban (PMAY-U)",
+    "category": "Housing",
+    "description": "Mission to provide all-weather pucca houses to eligible urban beneficiaries including EWS, LIG, and MIG families.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": null,
+    "maximum_income": 600000,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": [],
+    "student_status": null,
+    "target_groups": ["Urban Poor", "Homeless", "Economically Weaker Sections"],
+    "benefits": [
+      "Credit Linked Subsidy Scheme (CLSS) interest subsidy up to ₹2.67 lakh on home loans",
+      "Financial assistance of ₹1.5 lakh for new house construction"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Income Proof Certificate",
+      "Proof of no existing pucca house in India",
+      "Bank Account details"
+    ],
+    "keywords": ["housing", "house", "pucca house", "urban", "home loan", "shelter", "construction"],
+    "official_url": "https://pmaymis.gov.in",
+    "source_name": "Ministry of Housing and Urban Affairs",
+    "last_verified": "2026-01-20"
+  },
+  {
+    "id": "SCH005",
+    "name": "Pradhan Mantri Awas Yojana - Gramin (PMAY-G)",
+    "category": "Housing",
+    "description": "Rural housing scheme aiming to provide pucca houses with basic amenities to houseless and kutcha house dwellers in rural areas.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": null,
+    "maximum_income": 300000,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": [],
+    "student_status": null,
+    "target_groups": ["Rural Poor", "Houseless Dwellers"],
+    "benefits": [
+      "Financial assistance of ₹1.20 lakh in plain areas and ₹1.30 lakh in hilly/difficult areas",
+      "MGNREGA wage support of 90/95 days for house construction",
+      "₹12,000 assistance for toilet construction via Swachh Bharat Mission"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "MGNREGA Job Card",
+      "Bank Account details",
+      "Gram Sabha verification certificate"
+    ],
+    "keywords": ["housing", "rural", "house", "gramin", "shelter", "home", "construction"],
+    "official_url": "https://pmayg.nic.in",
+    "source_name": "Ministry of Rural Development",
+    "last_verified": "2026-01-20"
+  },
+  {
+    "id": "SCH006",
+    "name": "Prime Minister's Employment Generation Programme (PMEGP)",
+    "category": "Business",
+    "description": "Credit-linked subsidy programme to generate employment opportunities through micro-enterprises in non-farm sectors.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": 60,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["entrepreneur", "business owner", "unemployed"],
+    "student_status": false,
+    "target_groups": ["Entrepreneurs", "Self-Help Groups", "Unemployed Youth"],
+    "benefits": [
+      "Margin money subsidy up to 35% of project cost for special categories / rural areas",
+      "Bank loan up to ₹50 lakh for manufacturing units and ₹20 lakh for service units"
+    ],
+    "documents": [
+      "Project Detailed Report (DPR)",
+      "Aadhaar Card and PAN Card",
+      "Educational Qualification Certificate (8th pass minimum for projects > ₹10 lakh)",
+      "Caste / Category Certificate"
+    ],
+    "keywords": ["business", "entrepreneur", "startup", "employment", "subsidy", "micro enterprise", "self employed"],
+    "official_url": "https://www.kviconline.gov.in/pmegpeportal/",
+    "source_name": "Khadi and Village Industries Commission (KVIC), Ministry of MSME",
+    "last_verified": "2026-02-01"
+  },
+  {
+    "id": "SCH007",
+    "name": "Pradhan Mantri MUDRA Yojana (PMMY)",
+    "category": "Business",
+    "description": "Scheme to provide collateral-free micro-loans up to ₹10 lakh to non-corporate, non-farm small/micro enterprises.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": 65,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["entrepreneur", "business owner", "shopkeeper", "artisan"],
+    "student_status": null,
+    "target_groups": ["Small Business Owners", "Micro-Enterprises", "Artisans", "Shopkeepers"],
+    "benefits": [
+      "Shishu Loan: Loans up to ₹50,000",
+      "Kishor Loan: Loans above ₹50,000 and up to ₹5 Lakh",
+      "Tarun Loan: Loans above ₹5 Lakh and up to ₹10 Lakh",
+      "Zero collateral requirement"
+    ],
+    "documents": [
+      "Identity Proof (Aadhaar/Voter ID/PAN)",
+      "Business establishment proof or registration",
+      "Bank Account Statements (last 6 months)",
+      "Quotation of machinery/items to be purchased"
+    ],
+    "keywords": ["business", "mudra", "loan", "entrepreneur", "startup", "shopkeeper", "small business", "micro loan"],
+    "official_url": "https://www.mudra.org.in",
+    "source_name": "Micro Units Development & Refinance Agency Ltd.",
+    "last_verified": "2026-02-01"
+  },
+  {
+    "id": "SCH008",
+    "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+    "category": "Health",
+    "description": "World's largest health assurance scheme providing health coverage to vulnerable and low-income families.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": null,
+    "maximum_age": null,
+    "maximum_income": 250000,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": [],
+    "student_status": null,
+    "target_groups": ["Low-income Families", "BPL Families", "Rural and Urban Poor"],
+    "benefits": [
+      "Cashless health insurance cover of ₹5 lakh per family per year",
+      "Covers secondary and tertiary hospitalisation across empanelled public & private hospitals",
+      "Pre and post-hospitalisation expenses covered"
+    ],
+    "documents": [
+      "Aadhaar Card or Ration Card",
+      "PM-JAY Health Card / Family ID",
+      "Mobile number"
+    ],
+    "keywords": ["health", "medical", "hospital", "insurance", "ayushman", "healthcare", "treatment", "disease"],
+    "official_url": "https://pmjay.gov.in",
+    "source_name": "National Health Authority (NHA)",
+    "last_verified": "2026-01-10"
+  },
+  {
+    "id": "SCH009",
+    "name": "PM Vidya Lakshmi Education Loan Scheme",
+    "category": "Education",
+    "description": "Single-window portal providing access to education loans and interest subsidy schemes for students pursuing higher studies.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 16,
+    "maximum_age": 35,
+    "maximum_income": 450000,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["student"],
+    "student_status": true,
+    "target_groups": ["Higher Education Students", "College Students"],
+    "benefits": [
+      "Single application platform for education loan across 40+ banks",
+      "Central Sector Interest Subsidy (CSIS) during moratorium period for income up to ₹4.5 Lakh"
+    ],
+    "documents": [
+      "Admission Letter from recognized university",
+      "Fee breakdown document",
+      "Class 10th, 12th, and Graduation mark sheets",
+      "Parent Income Proof Certificate",
+      "Aadhaar Card of student and co-borrower"
+    ],
+    "keywords": ["education", "loan", "student", "college", "higher education", "university", "vidya lakshmi"],
+    "official_url": "https://www.vidyalakshmi.co.in",
+    "source_name": "Ministry of Education",
+    "last_verified": "2026-02-15"
+  },
+  {
+    "id": "SCH010",
+    "name": "Stand-Up India Scheme for Women and SC/ST Entrepreneurs",
+    "category": "Business",
+    "description": "Scheme facilitating bank loans to SC/ST and Women entrepreneurs for setting up greenfield micro/small enterprises.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": null,
+    "maximum_income": null,
+    "eligible_categories": ["SC", "ST", "General", "OBC", "EWS"],
+    "eligible_occupations": ["entrepreneur", "business owner"],
+    "student_status": false,
+    "target_groups": ["Women Entrepreneurs", "SC Entrepreneurs", "ST Entrepreneurs"],
+    "benefits": [
+      "Bank loans between ₹10 lakh and ₹1 Crore for manufacturing, services or trading sector",
+      "RuPay debit card provided for drawing working capital",
+      "Handholding support and credit guarantee cover"
+    ],
+    "documents": [
+      "Aadhaar Card and PAN Card",
+      "Caste Certificate (for SC/ST applicants)",
+      "Project Details & Business Registration",
+      "Bank Statement (1 year)"
+    ],
+    "keywords": ["business", "entrepreneur", "women", "sc", "st", "loan", "startup", "greenfield"],
+    "official_url": "https://www.standupmitra.in",
+    "source_name": "Small Industries Development Bank of India (SIDBI)",
+    "last_verified": "2026-01-25"
+  },
+  {
+    "id": "SCH011",
+    "name": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY 4.0)",
+    "category": "Skill Development",
+    "description": "Skill certification scheme encouraging youth to take up industry-relevant skill training for better livelihood opportunities.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 15,
+    "maximum_age": 45,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["unemployed", "student"],
+    "student_status": null,
+    "target_groups": ["Unemployed Youth", "School Dropouts", "Job Seekers"],
+    "benefits": [
+      "Free short-term skill training in emerging domains (AI, Robotics, Industry 4.0, Soft skills)",
+      "NSDC Recognized skill certificate",
+      "Placement assistance and financial stipend during training"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Educational qualification certificates"
+    ],
+    "keywords": ["skill", "training", "employment", "job", "kaushal", "certification", "unemployed", "vocational"],
+    "official_url": "https://www.pmkvyofficial.org",
+    "source_name": "Ministry of Skill Development and Entrepreneurship (MSDE)",
+    "last_verified": "2026-02-12"
+  },
+  {
+    "id": "SCH012",
+    "name": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulkh Shishyavrutti Yojna",
+    "category": "Education",
+    "description": "Maharashtra state scholarship scheme offering tuition fee reimbursement to economically weaker students in higher professional courses.",
+    "scope": "State",
+    "state_scope": ["Maharashtra"],
+    "minimum_age": 16,
+    "maximum_age": 30,
+    "maximum_income": 800000,
+    "eligible_categories": ["General", "EWS", "OBC"],
+    "eligible_occupations": ["student"],
+    "student_status": true,
+    "target_groups": ["Maharashtra Domicile Students", "Engineering/Professional Course Students"],
+    "benefits": [
+      "50% reimbursement of total tuition fees and examination fees for professional diploma/degree courses"
+    ],
+    "documents": [
+      "Domicile Certificate of Maharashtra",
+      "Income Certificate issued by Tehsildar (up to ₹8 Lakh)",
+      "CAP Allotment Letter",
+      "Previous Year Marksheets",
+      "Aadhaar linked Bank Account details"
+    ],
+    "keywords": ["maharashtra", "education", "scholarship", "tuition fee", "student", "college", "mahadbt", "degree"],
+    "official_url": "https://mahadbt.maharashtra.gov.in",
+    "source_name": "Government of Maharashtra Higher & Technical Education Department",
+    "last_verified": "2026-02-05"
+  },
+  {
+    "id": "SCH013",
+    "name": "PM SVANidhi (PM Street Vendor's AtmaNirbhar Nidhi)",
+    "category": "Business",
+    "description": "Special micro-credit facility empowering urban street vendors to resume work and expand micro businesses post pandemic.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": 70,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["street vendor", "hawker", "micro vendor", "entrepreneur"],
+    "student_status": false,
+    "target_groups": ["Street Vendors", "Hawkers", "Small Traders"],
+    "benefits": [
+      "Initial collateral-free working capital loan of ₹10,000",
+      "Second trimester loan up to ₹20,000 and third loan up to ₹50,000 upon timely repayment",
+      "7% interest subsidy per annum and monthly cashback on digital payments"
+    ],
+    "documents": [
+      "Certificate of Vending / Letter of Recommendation from Urban Local Body",
+      "Aadhaar Card",
+      "Bank Account details"
+    ],
+    "keywords": ["street vendor", "hawker", "business", "loan", "vendor", "svanidhi", "micro credit"],
+    "official_url": "https://pmsvanidhi.mohua.gov.in",
+    "source_name": "Ministry of Housing and Urban Affairs",
+    "last_verified": "2026-02-18"
+  },
+  {
+    "id": "SCH014",
+    "name": "Kisan Credit Card (KCC) Scheme",
+    "category": "Agriculture",
+    "description": "Comprehensive credit delivery system for farmers to meet short-term credit requirements for cultivation of crops and post-harvest expenses.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": 75,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["farmer", "agriculturist"],
+    "student_status": null,
+    "target_groups": ["Farmers", "Tenant Farmers", "Sharecroppers"],
+    "benefits": [
+      "Revolving credit up to ₹3 lakh at subsidized 4% effective interest rate (with prompt repayment incentive)",
+      "Atm-enabled KCC RuPay card for flexible drawals",
+      "Personal Accident Insurance and Crop Insurance cover included"
+    ],
+    "documents": [
+      "Land Ownership Documents / Lease Agreement",
+      "Aadhaar Card & Voter ID",
+      "No-dues certificate from nearby bank branches"
+    ],
+    "keywords": ["farmer", "agriculture", "kcc", "kisan credit card", "crop loan", "farming", "cultivator"],
+    "official_url": "https://pmkisan.gov.in",
+    "source_name": "Ministry of Agriculture & Farmers Welfare / NABARD",
+    "last_verified": "2026-01-30"
+  },
+  {
+    "id": "SCH015",
+    "name": "PM Vishwakarma Scheme",
+    "category": "Skill Development",
+    "description": "Comprehensive central scheme offering holistic end-to-end support to traditional artisans and craftsmen engaged in 18 traditional trades.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 18,
+    "maximum_age": null,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["artisan", "craftsman", "traditional worker"],
+    "student_status": null,
+    "target_groups": ["Artisans", "Craftsmen", "Traditional Workers (Carpenters, Blacksmiths, Tailors, Potters)"],
+    "benefits": [
+      "PM Vishwakarma Digital ID and Certificate",
+      "Basic & Advanced Skill Training with ₹500/day stipend",
+      "₹15,000 e-voucher toolkit incentive",
+      "Collateral-free credit support up to ₹3 Lakh (₹1L first tranche + ₹2L second tranche) at subsidized 5% interest"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Bank Account details",
+      "Mobile number linked to Aadhaar",
+      "Verification through Gram Panchayat / ULB"
+    ],
+    "keywords": ["artisan", "craftsman", "vishwakarma", "skill", "traditional", "business", "toolkit", "carpenter", "tailor"],
+    "official_url": "https://pmvishwakarma.gov.in",
+    "source_name": "Ministry of Micro, Small and Medium Enterprises (MSME)",
+    "last_verified": "2026-02-14"
+  },
+  {
+    "id": "SCH016",
+    "name": "National Apprenticeship Promotion Scheme (NAPS)",
+    "category": "Employment",
+    "description": "Scheme promoting apprenticeship training and incentives to employers for engaging apprentices in industrial organizations.",
+    "scope": "Central",
+    "state_scope": [],
+    "minimum_age": 15,
+    "maximum_age": 35,
+    "maximum_income": null,
+    "eligible_categories": ["General", "OBC", "SC", "ST", "EWS"],
+    "eligible_occupations": ["unemployed", "student"],
+    "student_status": null,
+    "target_groups": ["ITI Graduates", "Diploma Holders", "Unemployed Youth"],
+    "benefits": [
+      "25% of prescribed stipend up to ₹1,500 per month per apprentice reimbursed by Govt",
+      "Practical hands-on industry experience and NCVT Certificate"
+    ],
+    "documents": [
+      "Aadhaar Card",
+      "Educational Marksheet / ITI Certificate",
+      "Bank Passbook details"
+    ],
+    "keywords": ["apprentice", "employment", "job", "stipend", "skill", "training", "iti", "industrial"],
+    "official_url": "https://www.apprenticeshipindia.gov.in",
+    "source_name": "Ministry of Skill Development and Entrepreneurship",
+    "last_verified": "2026-01-18"
+  }
+]

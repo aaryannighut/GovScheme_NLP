@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}How It Works - System Architecture - GovScheme NLP{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary mb-2">How GovScheme NLP Works</h2>
+        <p class="text-muted lead fs-6">A transparent overview of our 7-stage Natural Language Processing pipeline.</p>
+    </div>
+
+    <!-- 7-Stage Architectural Pipeline Cards -->
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-primary">
+                <span class="badge bg-primary text-white w-25 mb-2">Step 1</span>
+                <h5 class="fw-bold text-dark">Natural Language Input</h5>
+                <p class="small text-muted mb-0">The user provides their personal details, family income, location, occupation, and scheme requirements in unstructured English prose.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-info">
+                <span class="badge bg-info text-dark w-25 mb-2">Step 2</span>
+                <h5 class="fw-bold text-dark">NLP Preprocessing</h5>
+                <p class="small text-muted mb-0">Text cleaning, lowercasing, sentence segmentation, tokenization, stop-word removal, stemming, and WordNet lemmatization.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-warning">
+                <span class="badge bg-warning text-dark w-25 mb-2">Step 3</span>
+                <h5 class="fw-bold text-dark">Attribute Extraction</h5>
+                <p class="small text-muted mb-0">Regular expressions, entity dictionaries, and optional spaCy NER extract specific fields (Age, Income in INR, State, Occupation, Category).</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-success">
+                <span class="badge bg-success text-white w-25 mb-2">Step 4</span>
+                <h5 class="fw-bold text-dark">Semantic Normalization</h5>
+                <p class="small text-muted mb-0">Synonym mapping converts diverse expressions (e.g. "cultivator" ➔ farmer, "undergraduate" ➔ student, "studies" ➔ Education) to standard canonical entities.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-purple" style="border-left-color: #9333ea !important;">
+                <span class="badge text-white w-25 mb-2" style="background-color: #9333ea;">Step 5</span>
+                <h5 class="fw-bold text-dark">TF-IDF Scheme Search</h5>
+                <p class="small text-muted mb-0">scikit-learn TfidfVectorizer calculates cosine similarity between user query tokens and scheme corpus documents to rank text relevance.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card gov-card p-4 h-100 border-start border-4 border-danger">
+                <span class="badge bg-danger text-white w-25 mb-2">Step 6</span>
+                <h5 class="fw-bold text-dark">Eligibility Matching Engine</h5>
+                <p class="small text-muted mb-0">Rule-based evaluator compares extracted attributes with structured scheme criteria to generate MATCHED, NOT_MATCHED, or NOT_PROVIDED flags.</p>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card gov-card p-4 border-start border-4 border-dark bg-light text-center">
+                <span class="badge bg-dark text-white mx-auto mb-2 px-3">Step 7</span>
+                <h5 class="fw-bold text-dark">Explainable Results & Official Links</h5>
+                <p class="small text-muted mb-0 max-w-700 mx-auto">The system displays schemes ordered by Profile Match Score, accompanied by an explicit breakdown of matched criteria and official portal links for verification.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

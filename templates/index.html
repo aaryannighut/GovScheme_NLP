@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block title %}GovScheme NLP - Find Government Schemes That Match Your Profile{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <span class="badge bg-primary text-white px-3 py-2 rounded-pill mb-3 fw-normal">Academic NLP Prototype</span>
+                <h1 class="hero-title mb-3">Find Government Schemes That Match Your Profile</h1>
+                <p class="hero-subtitle mb-4">
+                    Describe your age, income, location, occupation, and requirements in simple natural language. Our NLP engine will analyze your input and match relevant Indian government schemes.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('check_eligibility') }}" class="btn btn-primary btn-lg px-4 fw-semibold shadow-sm">
+                        Check My Eligibility →
+                    </a>
+                    <a href="{{ url_for('find_schemes') }}" class="btn btn-outline-primary btn-lg px-4 fw-semibold">
+                        Explore Schemes
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="card gov-card p-4 text-start">
+                    <h5 class="fw-bold text-dark mb-3">⚡ Quick Try Demo Profiles</h5>
+                    <p class="small text-muted mb-3">Click an example to run instant eligibility analysis:</p>
+                    <form action="{{ url_for('results') }}" method="POST" class="d-grid gap-2">
+                        <button type="submit" name="user_text" value="I am a 22 year old student from Maharashtra. My family income is 2.5 lakh per year. I belong to OBC category and I am looking for an education scholarship." class="btn btn-light text-start border btn-sm py-2 px-3">
+                            🎓 <strong>Student:</strong> 22 yr old OBC student, Maharashtra, 2.5L income
+                        </button>
+                        <button type="submit" name="user_text" value="I am a farmer from Maharashtra looking for agricultural financial assistance." class="btn btn-light text-start border btn-sm py-2 px-3">
+                            🌾 <strong>Farmer:</strong> Agriculture assistance, Maharashtra
+                        </button>
+                        <button type="submit" name="user_text" value="I am a young entrepreneur looking for government support to start a small business." class="btn btn-light text-start border btn-sm py-2 px-3">
+                            💼 <strong>Entrepreneur:</strong> Business loan & startup support
+                        </button>
+                        <button type="submit" name="user_text" value="My family is looking for housing assistance. We live in Maharashtra." class="btn btn-light text-start border btn-sm py-2 px-3">
+                            🏠 <strong>Housing:</strong> Pucca house construction aid
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Processing Flow Diagram -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold text-dark">How GovScheme NLP Works</h3>
+            <p class="text-muted">End-to-End Natural Language Processing Pipeline</p>
+        </div>
+        <div class="flow-container">
+            <div class="flow-step">
+                <div class="fs-4">🗣️</div>
+                <div class="small mt-1">Natural Language Input</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="fs-4">⚙️</div>
+                <div class="small mt-1">NLP Preprocessing</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="fs-4">🔍</div>
+                <div class="small mt-1">Profile Extraction</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="fs-4">⚖️</div>
+                <div class="small mt-1">Scheme Matching</div>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-step">
+                <div class="fs-4">🎯</div>
+                <div class="small mt-1">Relevant Schemes</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Feature Cards -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card gov-card h-100 p-4">
+                    <div class="fs-2 mb-2">🧠</div>
+                    <h5 class="fw-bold">NLP-Powered</h5>
+                    <p class="small text-muted mb-0">Understands user requirements, age, income, and location from natural language descriptions.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card gov-card h-100 p-4">
+                    <div class="fs-2 mb-2">🔎</div>
+                    <h5 class="fw-bold">Smart Search</h5>
+                    <p class="small text-muted mb-0">Finds relevant schemes using TF-IDF text similarity and category normalization.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card gov-card h-100 p-4">
+                    <div class="fs-2 mb-2">📋</div>
+                    <h5 class="fw-bold">Explainable Results</h5>
+                    <p class="small text-muted mb-0">See transparent breakdown of matched criteria, missing information, and profile match scores.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card gov-card h-100 p-4">
+                    <div class="fs-2 mb-2">🔗</div>
+                    <h5 class="fw-bold">Official Sources</h5>
+                    <p class="small text-muted mb-0">Direct links to verified government portals for official application guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Analytics Dashboard Section -->
+<section class="py-5 bg-white border-top border-bottom">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold mb-1">Scheme Dataset Analytics</h3>
+                <p class="text-muted mb-0">Curated Indian Government Schemes Distribution</p>
+            </div>
+            <a href="{{ url_for('find_schemes') }}" class="btn btn-outline-secondary btn-sm">View All {{ analytics.total_schemes }} Schemes</a>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card gov-card p-4 text-center h-100">
+                    <h2 class="display-4 fw-bold text-primary mb-0">{{ analytics.total_schemes }}</h2>
+                    <p class="fw-semibold text-muted">Verified Government Schemes</p>
+                    <hr class="my-3">
+                    <div class="d-flex justify-content-around small">
+                        <div>
+                            <strong class="d-block text-dark fs-5">{{ analytics.scopes.Central }}</strong>
+                            <span class="text-muted">Central Sector</span>
+                        </div>
+                        <div>
+                            <strong class="d-block text-dark fs-5">{{ analytics.scopes.State }}</strong>
+                            <span class="text-muted">State Level</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card gov-card p-4 h-100">
+                    <h6 class="fw-bold mb-3">Schemes Distribution by Category</h6>
+                    <div style="height: 220px; position: relative;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const catData = {{ analytics.categories | tojson }};
+        const labels = Object.keys(catData);
+        const dataValues = Object.values(catData);
+
+        const ctx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Number of Schemes',
+                    data: dataValues,
+                    backgroundColor: ['#2563eb', '#16a34a', '#ea580c', '#d97706', '#9333ea', '#0284c7', '#059669'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
